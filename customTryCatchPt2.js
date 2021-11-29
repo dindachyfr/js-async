@@ -12,15 +12,20 @@ const searchingBooks = (insertTitleHere) =>{
             {title: 'The Great Gatsby', year: 1925, author: 'F. Scott Fitzgerald', genre: ['Novel', 'Tragedy']},
             {title: 'Love Story', year: 1970, author: 'Erich Segal', genre: ['Romance', 'Drama']},
         ]
-                let titles = booksList.filter((items)=>{
-                    return items.title.toLowerCase().includes(insertTitleHere.toLowerCase())
-                    })
-                    if (titles.length !=0){
-                        success(titles)
-                    }
-                    else{
-                        failed(`${insertTitleHere} cannot be found`)
-                    }
+        if (insertTitleHere.length >= 5){
+            let titles = booksList.filter((items)=>{
+                return items.title.toLowerCase().includes(insertTitleHere.toLowerCase())
+                })
+                if (titles.length !=0){
+                    success(titles)
+                }
+                else{
+                    failed(`${insertTitleHere} cannot be found`)
+                }
+    }
+        else{
+            failed(`Minimal 5 karakter`)
+        }
         },2000)
     })
 }
@@ -35,4 +40,4 @@ const searchingBooksAsync = async (insertTitleHere)=>{
     }
 }
 
-searchingBooksAsync('an')
+searchingBooksAsync('wardrobe')
